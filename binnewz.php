@@ -4,16 +4,16 @@ ini_set('display_errors',1);
 error_reporting(-1);
 $timestart=microtime(true);
 require_once("../../www/config.php");
-binnewz_rss(200, 660);
-//binnewz_rss($argv[1], 5);
+//binnewz_rss(200, 660);
+binnewz_rss($argv[1], $argv[2]);
 
 
 function binnewz_rss ($days, $page) {
 	disable_group_all();
 	//$days = floor((time() - mktime(0,0,0, date("m")-$month, date("d"), date('Y'))) / 3600 / 24)+1;
-        //exec('rm ./films-hd_all');
+        exec('rm ./films-hd_all');
 	while($page != -1){
-		//exec('phantomjs ./binnewz.js '.$page.' >> ./films-hd_all');
+		exec('phantomjs ./binnewz.js '.$page.' >> ./films-hd_all');
 		$page--;
 	}
 	$post_get = file_get_contents('./films-hd_all');
